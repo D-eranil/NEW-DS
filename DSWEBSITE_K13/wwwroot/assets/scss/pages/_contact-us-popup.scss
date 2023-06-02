@@ -1,0 +1,243 @@
+.contact-us-popup{
+    padding-right: 0 !important;
+    .modal-dialog{
+        max-width: 80%;
+        @media only screen and (max-width: 767px) {
+            max-width: 100%;
+        }
+        @media (max-width: 1200px) and (min-width: 768px) {
+            max-width: 95%;
+        }
+        @media (max-width: 5000px) and (min-width: 1920px) {
+            max-width: 56%;
+        }
+    }
+    .popup-heading{
+        padding: 15px 20px 0;
+        margin-bottom: 0px;
+        h2{
+            font-size: 32px;
+            margin-bottom: 5px;
+            &::after{
+                bottom: 7px;
+            }
+        }
+        button {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 14px;
+            border-radius: 100%;
+            opacity: 1;
+            border: 2px solid #000;
+            padding: 6px;
+        }
+        p{
+            font-weight: 500;
+        }
+    }
+    .modal-body{
+        padding-top: 0;
+        padding-bottom: 30px;
+    }
+    form{
+        .form-group{
+            margin-bottom: 20px;
+        }
+        label{
+            font-weight: 400;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+            span{
+                color: red;
+            }
+        }
+        input{
+            border:1px solid #CCCCCC;
+            padding: 4px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            background-color: transparent;
+            width: 100%;
+        }
+        textarea{
+            border:1px solid #CCCCCC;
+            padding: 4px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            background-color: transparent;
+            width: 100%;
+            resize: none;
+            height: 160px;
+        }
+        .mobile-dropdown{
+            display: inline-block;
+            width: 25%;
+            vertical-align: middle;
+            @media only screen and (max-width: 991px) {
+                width: 33%;
+            }
+            img{
+                right:6px;
+                top:13px;
+            }
+            select{
+                color: #fff;
+                background-color: #F05A22;
+                border: none;
+                padding: 5px 20px 5px 10px;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                font-size: 14px;
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                width: 100%;
+                vertical-align: middle;
+                height: 35px;
+                vertical-align: middle;
+                margin-top: -2px;
+            }
+        }
+        .popup-number{
+            width: 75%;
+            margin-left: -10px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            padding-left: 15px;
+            @media only screen and (max-width: 991px) {
+                width: 68%;
+            }
+        }
+    }
+    .robot-img{
+        img{
+            max-width: 250px;
+        }
+    }
+    .control {
+        display: block;
+        position: relative;
+        padding-left: 27px;
+        margin-bottom: 15px;
+        padding-top: 3px;
+        font-size: 12px;
+    }
+        .control input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+        }
+    .control_indicator {
+        position: absolute;
+        top: 4px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background: transparent;
+        border: 1px solid #ddd;
+    }
+    .control:hover input ~ .control_indicator,
+    .control input:focus ~ .control_indicator {
+        background: transparent;
+    }
+    
+    .control input:checked ~ .control_indicator {
+        background: #F05A22;
+    }
+    .control:hover input:not([disabled]):checked ~ .control_indicator,
+    .control input:checked:focus ~ .control_indicator {
+        background: #F05A22;
+    }
+    .control_indicator:after {
+        box-sizing: unset;
+        content: '';
+        position: absolute;
+        display: none;
+    }
+    .control input:checked ~ .control_indicator:after {
+        display: block;
+    }
+    .control-radio .control_indicator {
+        border-radius: 50%;
+    }
+    
+    .control-radio .control_indicator:after {
+        left: 7px;
+        top: 6px;
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background: #ffffff;
+        
+    }
+   .control-radio .control_indicator::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4.5rem;
+        height: 4.5rem;
+        margin-left: -1.3rem;
+        margin-top: -1.3rem;
+        background: #F05A22;
+        border-radius: 3rem;
+        opacity: 0.6;
+        z-index: 99999;
+        transform: scale(0);
+    }
+    @keyframes s-ripple {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        20% {
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0.01;
+            transform: scale(1);
+        }
+    }
+    @keyframes s-ripple-dup {
+       0% {
+           transform: scale(0);
+        }
+       30% {
+            transform: scale(1);
+        }
+        60% {
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(1);
+        }
+    }
+    .control-radio input + .control_indicator::before {
+        animation: s-ripple 250ms ease-out;
+    }
+    .control-radio input:checked + .control_indicator::before {
+        animation-name: s-ripple-dup;
+    }
+    .contact-radio-btn{
+        ul{
+            padding: 0;
+            li{
+                list-style: none;
+                width: 32%;
+                display: inline-block;
+                @media only screen and (max-width: 1200px) {
+                    width: 49%;
+                }
+                
+            }
+        }
+    }
+    
+}

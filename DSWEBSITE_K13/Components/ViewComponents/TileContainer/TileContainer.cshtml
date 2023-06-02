@@ -1,0 +1,23 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.TileContainerModel
+<div class="call-action color-white">
+    <div class="container-fluid">
+        <div class="row">
+            @{ var i = 0;}
+            @foreach (var tile in Model.Tiles)
+            {
+                var cls = i == 0 ? "call-action-left" : "call-action-right";
+                <div class="col-lg-6 col-md-6 primary-color position-relative @cls call-action-box" style="background-color:@tile.ThemesColor!important">
+                    <div class="call-action-box content-wrap">
+                        <h3>@tile.Title</h3>
+                        <p>@tile.ContentText</p>
+                        <a href="@tile.ButtonRedirectURL" class="btn secondary-btn">@tile.ButtonText</a>
+                    </div>
+                    <div class="call-action-icon position-absolute">
+                        <img src="@tile.ImageURL" alt="@tile.ImageAltText">
+                    </div>
+                </div>
+                i++;
+            }
+        </div>
+    </div>
+</div>

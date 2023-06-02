@@ -1,0 +1,68 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.BlogDetailsModel
+@{
+    var blog = Model.SelectedBlog;
+    var blogs = Model.LatestBlogs;
+}
+<main>
+    <div class="inner-banner position-relative color-white" style="background-image: url(@blog.BlogBannerImage);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-banner-content">
+                        <h1 class="inner-banner-heading">@blog.Heading</h1>
+                        <h3>@blog.BlogTitle</h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="blog-detail">
+                        <span>
+                            @blog.BlogAuthor <br>
+                            @blog.DisplayDate
+                        </span>
+                        <h2>@blog.BlogTitle</h2>
+                        <div class="blog-category">
+                            <p>
+                                <span>Category : </span>
+                                @*<a class="border-item" href="/blog?category=@blog.Category">@blog.Category</a>*@
+                                <span class="color-black border-item">@blog.Category</span>
+                            </p>
+                        </div>
+                        <p class="font-medium">
+                            @blog.BlogContentText
+                        </p>
+                        @*<img src="@blog.BlogDetailImage" alt="@blog.BlogDetailImageAltText">*@
+                        @Html.Raw(blog.BlogContentHtmlText)
+                        <div class="blog-tags">
+                            <span>Tags </span>
+                            <ul>
+                                @{
+                                    if (blog.Tags != null && blog.Tags.Count > 0)
+                                    {
+                                        foreach (var tag in blog.Tags)
+                                        {
+                                            //<li><a class="item" href="/blog?tag=@tag">#@tag</a></li>
+                                            <li><span class="color-black item">@tag</span></li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.Controls != null)
+            {
+                <div class="reloader text-center">
+                    <a href="/blog" class="btn primary-btn" title="@Model.Controls.ListingButtonText">@Model.Controls.ListingButtonText</a>
+                </div>
+            }
+        </div>
+    </div>
+</main>

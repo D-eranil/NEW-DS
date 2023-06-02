@@ -1,0 +1,172 @@
+.industry-section{
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    .industry-list{
+        padding-left: 60px;
+        border-left:1px solid rgba(225,225,225,0.4);
+        @media only screen and (max-width: 767px) {
+            padding-left: 0;
+            border: none;
+        }
+        @media (max-width: 1200px) and (min-width: 991px) {
+            padding-left: 40px;
+        }
+        ul{
+            padding: 0;
+            margin: 0 auto;
+            li{
+                list-style: none;
+                display: inline-block;
+                width: 32%;
+                margin-bottom: 25px;
+                margin-top: 20px;
+                vertical-align: top;
+                @media only screen and (max-width: 767px) {
+                    width: 49%;
+                    vertical-align: top;
+                    margin-bottom: 0;
+                    margin-top: 10px;
+                }
+                @media (max-width: 991px) and (min-width: 768px) {
+                    width: 49%;
+                }
+            }
+        }
+    }
+    .industry-heading{
+        padding-top: 20px;
+        padding-right: 50px;
+        @media only screen and (max-width: 767px) {
+            padding-right: 0;
+            text-align: center;
+        }
+        @media (max-width: 991px) and (min-width: 768px) {
+            padding-right: 0;
+        }
+        p{
+            font-size: 14px;
+        }
+    }
+}
+.strength-list{
+    margin-bottom: 30px;
+    .strength-heading{
+        font-size: 22px;
+        font-weight: 600;
+        span{
+            color: $color-orange;
+        }
+    }
+}
+.activity-tabs{
+    @media only screen and (max-width: 767px) {
+    .row{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        .col-lg-3.col-md-3 {
+            display: flex;
+            max-width: 250px;
+        }
+    }
+    }
+    .accordion-button {
+        background-color: transparent;
+        padding: 0;
+        &::after{
+            display: none;
+        }
+        &[aria-expanded="true"] {
+            border: 2px solid #fff;
+        }
+        &:focus{
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    .collapsing{
+        transition:initial;
+    }
+    .accordion-collapse{
+        transition: 0.3s all ease-in-out;
+    }
+    .accordion-body{
+        padding: 0px 0 20px;
+    }
+    img{
+        max-width: 100%;
+        width: 100%;
+    }
+    .activity-content{
+        bottom: 20px;
+        padding: 0 20px;
+        h5{
+            margin-bottom: 4px;
+        }
+        span{
+            color: #F05A22;
+        }
+    }
+    .accordion-header{
+        margin-bottom: 20px;
+        @media only screen and (max-width: 767px) {
+            margin-top:20px;
+        }
+    }
+    .activity-slider{
+        @media only screen and (max-width: 767px) {
+        .slick-slide img {
+            margin: 20px auto 0px;
+        }
+        }
+        .slick-arrow{
+            z-index: 1;
+            top:49%;
+            @media only screen and (max-width: 767px) {
+                top:40%;
+            }
+            svg{
+                fill: #fff;
+                &:hover{
+                    fill: $color-orange;
+                }
+            }
+            &.slick-prev{
+                left:10px;
+            }
+            &.slick-next{
+                right: 10px;
+            }
+        }
+    }
+    @media only screen and (max-width: 767px) {
+        ::-webkit-scrollbar {
+            height: 3px;
+            width: 0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fff;
+        }
+        ::-webkit-scrollbar-track {
+            background: #222;
+        }
+    }
+}
+.activities-section{
+    .heading{
+        p{
+            width: 80%;
+            margin: 0 auto;
+            @media only screen and (max-width: 767px) {
+                width: 100%;
+            }
+        }
+    }
+    h3{
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+    

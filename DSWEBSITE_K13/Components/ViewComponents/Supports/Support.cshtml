@@ -1,0 +1,21 @@
+﻿@model DSWEBSITE_K13.Models.ViewModels.SupportViewModel
+
+<div class="services-section" id="@Model.SectionDivId">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="services-content">
+                    <h3 class="color-black">
+                        @Model.Heading
+                    </h3>
+                    @Html.Raw(Model.ContentText)
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="services-img">
+                    <img src="@Model.ImageURL" alt="@Model.ImageAltText">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

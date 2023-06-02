@@ -1,0 +1,135 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.InnerPageSectionModel
+@{
+
+}
+
+@if (Model.IsH3Section)
+{
+<div class="industry-section section" style="background-image: url(@Model.Image); color:@Model.ThemesColor">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="industry-heading content-wrap">
+                    <h3>@Model.Title</h3>
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <div class="industry-list">
+                    <ul>
+                        @{
+                            if (Model.Industries != null && Model.Industries.Count > 0)
+                            {
+                                foreach (var industry in Model.Industries)
+                                {
+                                    <li>@industry.LinkItemText</li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+else
+{
+    <div class="strength-section section" id="@Model.DivSectionId" style="background-color:@Model.ThemesColor">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="@(Model.Activities.Count > 0 ? "heading color-white text-center content-wrap":"heading text-center content-wrap")">
+                        <h2>@Model.Title</h2>
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @if (Model.Strengths != null && Model.Strengths.Count > 0)
+                {
+                    foreach (var strength in Model.Strengths)
+                    {
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="strength-list content-wrap">
+                                <div class="strength-heading">
+                                    @Html.Raw(strength.Name)
+
+                                </div>
+                                @Html.Raw(strength.ShortDescription)
+                            </div>
+                        </div>
+                    }
+                }
+                @if (Model.Activities != null && Model.Activities.Count > 0)
+                {
+                    var activityGroups = Model.Activities.GroupBy(grp => grp.Group).ToList();
+
+                    <div class="activity-tabs">
+                        <div class="accordion" id="activities-accordion">
+
+                            @foreach (var activityGroup in activityGroups)
+                            {
+                                var _activities = new List<DSWEBSITE_K13.Components.ViewComponents.ActivitiesModel>();
+                                _activities = activityGroup.ToList();
+                                <div>
+                                    <div class="row">
+
+                                        @foreach (var activity in _activities)
+                                        {
+                                            <div class="col-lg-3 col-md-3">
+                                                <div class="accordion-header" id="activities-@activity.Name">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@activity.ActivityTabID" aria-expanded="false" aria-controls="@activity.ActivityTabID">
+                                                        <div class="activity-box position-relative">
+                                                            <div class="activity-thumbnail-img activity-hover-effect2">
+                                                                <img src="@activity.Image" alt="@activity.Name">
+                                                            </div>
+                                                            <div class="activity-content position-absolute color-white">
+                                                                <h4 class="content-overflow-nowarp" title="@activity.Name">@activity.Name</h4>
+                                                                <span title="@activity.Date">@activity.DisplayDate</span>
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            @foreach (var activity in _activities)
+                                            {
+                                                <div id="@activity.ActivityTabID" class="accordion-collapse collapse fade in" aria-labelledby="activities-@activity.Name" data-bs-parent="#activities-accordion">
+                                                    <div class="accordion-body">
+                                                        <div class="activity-slider">
+                                                            @{ var attachments = activity.Attachments; }
+                                                            @{
+                                                                if (attachments != null && attachments.Count > 0)
+                                                                {
+                                                                    int itemcount = 1;
+                                                                    foreach (var attachment in attachments)
+                                                                    {
+                                                                        <div class="activity-slider-img">
+                                                                            <img src="@attachment" alt="activity-img-@itemcount">
+                                                                        </div>
+                                                                        itemcount++;
+                                                                    }
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+}
+

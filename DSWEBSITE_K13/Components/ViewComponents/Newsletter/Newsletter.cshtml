@@ -1,0 +1,108 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.NewsletterModel
+
+<style type="text/css">
+    .errBorderRed {
+        border: 1px solid red !important;
+    }
+</style>
+<div class="subscribe-section color-white" style="background-image: url(@Model.BackgroundImage);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="subscribe-content color-white">
+                    <h3>
+                        @Model.TitleText<span class="primary-circle-color">.</span>
+                    </h3>
+                    <p>@Model.ContentText</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <form id="frmNewsletter">
+                    @*<input type="email" value="" placeholder="@Model.EmailTextboxName">*@
+                    @Html.TextBoxFor(m => m.EmailTextboxName, new { @type = "email", @placeholder = "Enter your email", @maxlength = "50" })
+                    @Html.ValidationMessageFor(m => m.EmailTextboxName, "", new { @class = "error d-none", @id = "errEmail" })
+                    <div class="checkbox-subscribe">
+                        <label class="control control-checkbox">
+                            @Model.CheckboxText
+                            @Html.CheckBoxFor(m => m.AgreedCheckbox)
+                            <div class="control_indicator"></div>
+                        </label>
+                        @Html.ValidationMessageFor(m => m.AgreedCheckbox, "", new { @class = "error d-none", @id = "errAgree" })
+                    </div>
+                    <button id="btnSubmit" class="btn primary-btn">@Model.ButtonText</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" on-content-loaded="true">
+    $("#btnSubmit").click(function () {
+        var email = $("#EmailTextboxName").val();
+        var agree = $("#AgreedCheckbox").is(':checked');// $("#AgreedCheckbox").val();
+        $("#errEmail").html("");
+        $("#errAgree").html("");
+        $("#EmailTextboxName").removeClass("errBorderRed");
+        $(".control_indicator").removeClass("errBorderRed");
+        var pattern = /^\b[A-Z0-9._%-]+@@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+
+        if (email != null && email != "" && pattern.test(email) && agree == true) {
+            var valdata = $("#frmNewsletter").serialize();
+            $.ajax({
+                url: "/Form/Newsletter",
+                type: "POST",
+                data: valdata,
+                success: function (res) {
+                    var result = "<span>" + res +"</span>"
+                    $("#frmNewsletter").html("");
+                    $("#frmNewsletter").html(result);
+                   
+                    return true;
+                },
+                error: function (msg) {
+                    alert("Error - " + err);
+                    return false;
+                }
+            });
+        }
+        else {
+            var focusObj = null;
+            if (email == null || email == "") {
+                $("#EmailTextboxName").addClass("errBorderRed");
+                focusObj = $("#EmailTextboxName");
+               /* $("#errEmail").html("Email id is required");*/
+            }
+            else {
+                if (!pattern.test(email)) {
+                    $("#EmailTextboxName").addClass("errBorderRed");
+                    if (focusObj == null) {
+                        focusObj = $("#EmailTextboxName");
+                    }
+                   /* $("#errEmail").html("Enter valid email id");*/
+                }
+            }
+
+            if (agree == null || agree == "" || agree == false) {
+                $(".control_indicator").addClass("errBorderRed");
+                if (focusObj == null) {
+                    focusObj = $(".control_indicator");
+                }
+               /* $("#errAgree").html("Please agree email marketing terms");*/
+            }
+
+            if (focusObj != null) {
+                $(focusObj).focus();
+            }
+            return false;
+        }
+        return false;
+    });
+
+    $(".control_indicator").click(function () {
+        var agree = $("#AgreedCheckbox").is(':checked');
+        if (agree) {
+            $(this).removeClass("errBorderRed");
+        }
+    });
+
+</script>

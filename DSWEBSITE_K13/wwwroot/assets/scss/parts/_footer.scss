@@ -1,0 +1,167 @@
+.footer{
+    background-color: #222;
+    padding: 60px 0 0;
+    a{
+        color: #fff;
+        text-decoration: none;
+    }
+    .col-lg-2{
+        width: 19.66667%;
+        @media only screen and (max-width: 767px) {
+            width: 49%;
+        }
+        &:last-child{
+            @media only screen and (max-width: 767px) {
+                width: 100%;
+            }
+        }
+    }
+    .footer-links{
+        ul{
+            padding: 0;
+            li{
+                list-style: none;
+                display: block;
+                font-size: 14px;
+                color: #CCCCCC;
+                a{
+                    color: #CCCCCC;
+                }
+                
+            }
+        }
+        p,span{
+            font-size: 14px;
+            color: #ccc;
+        }
+        span{
+            color: #F05A22;
+            line-height: 18px;
+            display: block;
+            word-break: break-word;
+        }
+    }
+    .footer-middle {
+        padding-top: 60px;
+        width: 80%;
+        margin: 0 auto;
+        @media only screen and (max-width: 991px) {
+            width: 100%;
+        }
+        .footer-badges{
+            padding-right: 50px;
+            border-right: 1px solid #555555;
+            @media only screen and (max-width: 767px) {
+                padding-right: 0px;
+                margin-bottom: 20px;
+                border: none;
+            }
+            ul{
+                padding: 0;
+                margin: 0 auto;
+                li{
+                    list-style: none;
+                    display: inline-block;
+                    width: 30%;
+                    margin: 12px auto 12px;
+                    text-align: center;
+                }
+            }
+        }
+        .footer-map{
+            padding-left: 50px;
+            @media only screen and (max-width: 767px) {
+                padding-left: 0px;
+            }
+            img{
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+            ul{
+                padding: 0;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                li{
+                    display: flex;
+                    list-style: none;
+                    position: relative;
+                    font-size: 15px;
+                    margin: 0 15px;
+                    justify-content: center;
+                    align-items: center;
+                    &::after{
+                            position: absolute;
+                            content: "";
+                            top: 3px;
+                            right: -15px;
+                            border: 1px solid #ddd;
+                            width: 1px;
+                            height: 80%;
+                    }
+                    &:last-child{
+                        &::after{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom{
+        text-align: center;
+        padding-top: 60px;
+        @media only screen and (max-width: 767px) {
+            padding-top:20px;
+        }
+        ul{
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            padding: 0;
+            li{
+                list-style: none;
+                display: flex;
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                margin: 0 10px;
+                font-size: 14px;
+                opacity: 0.8;
+                transition: 0.3s all ease-in-out;
+                position: relative;
+                @media only screen and (max-width: 767px) {
+                    margin: 0 5px;
+                    font-size: 10px;
+                }
+                &:hover{
+                    opacity: 1;
+                    transition: 0.3s all ease-in-out;
+                }
+                img{
+                    height: 22px;
+                }
+            }
+        }
+        .footer-bottom-links{
+            ul{
+                li{
+                    &::after{
+                        position: absolute;
+                        content: "|";
+                        right:-10px;
+                        @media only screen and (max-width: 991px) {
+                            right: -5px;
+                        }
+                    }
+                    &:last-child{
+                        &::after{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

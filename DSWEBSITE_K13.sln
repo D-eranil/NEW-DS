@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.6.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSWEBSITE_K13", "DSWEBSITE_K13\DSWEBSITE_K13.csproj", "{F7883093-F805-45AC-A107-CCE8F801B5EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Debug|x64.Build.0 = Debug|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Debug|x86.Build.0 = Debug|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Release|x64.ActiveCfg = Release|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Release|x64.Build.0 = Release|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7883093-F805-45AC-A107-CCE8F801B5EC}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADC297DE-80AA-4856-8E24-F438228F8277}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,38 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.CareerOpeningViewModel
+
+@{
+    var cnt = 1;
+}
+    <div class="join-us-accordion">
+        <div class="accordion" id="job-accordion">
+            @foreach (var item in Model.CurrentOpeningModel)
+            {
+                <div class="accordion-item" id="@item.sectionDivId">
+                    <h2 class="accordion-header" id="jobheading_@cnt" >
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#job-accordion_@cnt" aria-expanded="false" aria-controls="collapseOne">
+                            <div class="job-heading">
+                                <h3>@Html.Raw(item.OpeningTitle)</h3>
+                                <span>@Html.Raw(item.NoOfVaccancies) opening</span>
+                            </div>
+                            <div class="job-location">
+                                <p>Location: @Html.Raw(item.Location)</p>
+                                @if (item.RemoteWork)
+                                {
+                                    <span>Remote work</span>
+                                }
+                            </div>
+                            <div class="job-opening-arrow">
+                                <img src="/assets/images/job-opening-arrow.svg" alt="job-opening-arrow">
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="job-accordion_@cnt" class="accordion-collapse collapse" aria-labelledby="jobheading_@cnt" data-bs-parent="#job-accordion">
+                        <div class="accordion-body join-us-content">
+                            @Html.Raw(item.Description)
+                        </div>
+                    </div>
+                </div>
+                cnt++;
+            }
+        </div>
+    </div>

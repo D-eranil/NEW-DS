@@ -1,0 +1,14 @@
+﻿@model VcContainersModel
+
+@{
+    foreach (VcContainerModel VcsContainer in Model.VcContainers)
+    {
+        <div class="vc-container">
+            @foreach (TreeNode Node in VcsContainer.Vcs)
+            {
+                string code = Node.ClassName.Replace("DotStarK.", "");
+                 @await Component.InvokeAsync(code, new { page = Node })
+            }
+        </div>
+    }
+}

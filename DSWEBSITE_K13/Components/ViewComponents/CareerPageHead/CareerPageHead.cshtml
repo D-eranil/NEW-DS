@@ -1,0 +1,49 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.CareerPageHeadModel
+
+<div class="career-banner position-relative" style="background-image: url(@Model.BannerImage);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="career-banner-content color-white">
+                    <h2>@Html.Raw(Model.BannerTitle)</h2>
+                    <p>@Html.Raw(Model.SubTitle)</p>
+                    @if (Model.CurrentOpenings != null && Model.CurrentOpenings.Count > 0)
+                    {
+                        <ul>
+                            @foreach (var item in Model.CurrentOpenings)
+                            {
+                                <li><a style="color: white; text-decoration: none" href="@('#'+ item.sectionDivId)">@Html.Raw(item.OpeningTitle)</a></li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+            @if (Model.FormEnabled)
+            {
+                <div class="col-lg-6 col-md-12">
+                    <div class="career-form">
+                        <h3>@Html.Raw(Model.FormTitle)</h3>
+                        <p>@Html.Raw(Model.ShortDescription)</p>
+                        @await Component.InvokeAsync("BiodataSubmissionForm")
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @if (Model.LstBreadcrumb != null && Model.LstBreadcrumb.Count > 0)
+    {
+        <div class="breadcrumbs position-absolute" id="breadcrumbs">
+            <div class="container">
+                <ul>
+                    @foreach (var item in Model.LstBreadcrumb)
+                    {
+                        <li><a href="@item.ItemUrl"> @item.ItemName</a></li>
+                    }
+                </ul>
+                <div class="contact-call-action-btn">
+                    <a data-bs-toggle="modal" data-bs-target="#contact-us-popup">Contact us</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,41 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.ExpertContainerModel
+
+<div class="home-expertise position-relative section">
+    <div class="bg-shapes"></div>
+    <div class="container">
+        <div class="expertise-section">
+            <div class="row">
+                @{ var i = 1; var cnt = 1; }
+                @foreach (var expert in Model.Experties)
+                {
+                    var cls = (i == 2 || cnt == 2) ? "secondary-color" : "primary-color";
+                    var divCls = "";
+                    if (i < 4)
+                    {
+                        divCls = "col-lg-4 col-md-4";
+                    }
+                    else
+                    {
+                        divCls = "col-lg-6 col-md-6 col-sm-6"; cnt++;
+                    };
+
+                    <div class="@divCls">
+                        <div class="expertise-box content-wrap @cls color-white position-relative card h-100" style="background-color:@expert.ThemesColor!important">
+                            <h3>
+                                @expert.Name
+                            </h3>
+                            <p>@expert.ShortDescription</p>
+                            @*<a href="@expert.ExpertiesRedirectPath" class="btn secondary-btn">
+                                @expert.CTAButtonText
+                            </a>*@
+                            <div class="expertise-icon position-absolute">
+                                <img src="@expert.CardImage" alt="@expert.CardImageAltText">
+                            </div>
+                        </div>
+                    </div>
+                    i++;
+                }
+            </div>
+        </div>
+    </div>
+</div>

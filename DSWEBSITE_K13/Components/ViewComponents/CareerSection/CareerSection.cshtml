@@ -1,0 +1,13 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.CareerSectionModel
+
+    <div class="container">
+        <div class="benefits-section section" id="@Model.SectionDivId">
+            <div class="benefits-content float-lg-@Model.DescriptionLocation">
+                <h3>@Html.Raw(Model.Name)</h3>
+                <p>@Html.Raw(Model.Description)</p>
+            </div>
+            <div class="benefits-img float-lg-@Model.ImageLocation">
+                <img src="@Model.Image" alt="@Model.Name">
+            </div>
+        </div>
+    </div>

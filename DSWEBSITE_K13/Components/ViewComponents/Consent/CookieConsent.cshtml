@@ -1,0 +1,46 @@
+﻿@using CMS.Helpers;
+@model DSWEBSITE_K13.Components.ViewComponents.Consent.DSConsentViewModel
+
+@inject IPageDataContextRetriever pageDataContextRetriever
+@{
+    string GetReturnUrl()
+    {
+        // Get URL for pages handled by content tree-based router, otherwise get path from the context
+        return pageDataContextRetriever.TryRetrieve<TreeNode>(out var _) ?
+            Url.Kentico().CurrentPageUrl() :
+            (Context.Request.PathBase + Context.Request.Path).Value;
+    }
+}
+
+<link href="~/assets/css/main.css" rel="stylesheet" />
+@if (!Model.IsAgreed)
+{
+    var routeData = new Dictionary<string, string> { { "returnUrl", GetReturnUrl() } };
+    <div id="cookiePopup" class="cookie-popup">
+        <div class="cookie-popup-content">
+            @Html.Raw(Model.ShortText)
+
+            @Html.Kentico().ResolveUrls(Model.ConsentFullText)
+
+            <div class="cookie-button-container">
+                <form asp-controller="DSConsent" asp-all-route-data="routeData" asp-action="Accept" method="post">
+                    <input id="acceptButton" class="btn primary-btn mx-1" type="submit" value="Accept" />
+                </form>
+                <form asp-controller="DSConsent" asp-all-route-data="routeData" asp-action="Revoke" method="post">
+                    <input class="btn bg-white text-dark border-btn mx-1" type="submit" value="Decline" />
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+

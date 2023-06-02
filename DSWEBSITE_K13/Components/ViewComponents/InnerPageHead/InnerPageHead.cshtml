@@ -1,0 +1,38 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.InnerPageHeadModel
+
+<div class="inner-banner position-relative color-white"
+     style="background-image: url(@Model.BannerImage);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-banner-content">
+                    <h2>@Model.BannerTitle <span>@Model.SubTitle</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.LstBreadcrumb != null && Model.LstBreadcrumb.Count > 0)
+    {
+        <div class="breadcrumbs position-absolute" id="breadcrumbs">
+            <div class="container">
+                <ul>
+                    @foreach (var item in Model.LstBreadcrumb)
+                    {
+                        <li><a href="@item.ItemUrl"> @item.ItemName</a></li>
+                    }
+                </ul>
+                <div class="contact-call-action-btn">
+                    <a data-bs-toggle="modal" data-bs-target="#contact-us-popup">Contact us</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById('ActiveHeader').className = 'header sticky-header inner-header';
+    };
+
+</script>
+
+

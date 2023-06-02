@@ -1,0 +1,24 @@
+.services-content{
+    h3{
+        letter-spacing: -2px;
+        margin-bottom: 15px;
+    }
+}
+.services-img{
+    @media only screen and (max-width: 991px) {
+        margin-top: 20px;
+    }
+    img{
+        width: 100%;
+    }
+}
+.services-section{
+    transition: 0.3s all ease-in-out;
+    padding-top: 60px;
+    &:last-child{
+        padding-bottom: 60px;
+    }
+    @media only screen and (max-width: 991px) {
+        padding-top: 30px;
+    }
+}

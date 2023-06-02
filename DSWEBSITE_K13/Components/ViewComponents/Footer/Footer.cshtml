@@ -1,0 +1,141 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.FooterModel
+
+<footer class="footer color-white">
+    @if (Model.topSocialMediaList != null && Model.topSocialMediaList.Count > 0)
+    {
+        var i = 1;
+        <section class=" mb-4">
+
+            <div class="row text-center d-flex justify-content-center m-0 ">
+                @foreach (var socialMediaItem in Model.topSocialMediaList)
+                {
+                    var className = "col-3 p-2 bg" + i;
+                    <a class="text-decoration-none text-white @className" target="_blank" href="@socialMediaItem.SocialMediaURL">
+                        @*<div class="">*@
+                            <img src="@socialMediaItem.SocialMediaIcon" alt="@socialMediaItem.SocialAltText"
+                         width="@socialMediaItem.IconWidth">
+                        @*</div>*@
+                    </a>
+                    i++;
+                }
+
+            </div>
+
+        </section>
+    }
+    else
+    {
+        @Html.Raw("<div class='pt-5'></div>")
+    }
+
+    <div class="container">
+        <div class="footer-top">
+            <div class="row">
+                <div class="col col-md-3 col-sm-6 phone-sreen">
+                    <div class="footer-links">
+                        @if (Model.usefulLinks != null && Model.usefulLinks.Count > 0)
+                        {
+                            <h5>Useful Links</h5>
+                            <ul class="p-0">
+                                @foreach (var link in Model.usefulLinks)
+                                {
+                                    if (link.LinkItemUrl == "#contact-us-model-popup")
+                                    {
+                                        <li class="list-unstyled"><a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#contact-us-popup">@link.LinkItemText</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="list-unstyled"><a target="_blank" class="text-decoration-none" href="@link.LinkItemUrl">@link.LinkItemText</a></li>
+                                    }
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+                @if (Model.mainNavMenus != null && Model.mainNavMenus.Count > 0)
+                {
+                    foreach (var mainNav in Model.mainNavMenus)
+                    {
+                        <div class="col col-md-3 col-sm-6 phone-sreen">
+
+                            <div class="footer-links">
+                                <h5>@mainNav.NavItemName</h5>
+                                @if (mainNav.subNavlinks != null && mainNav.subNavlinks.Count > 0)
+                                {
+                                    <ul>
+                                        @foreach (var subNav in mainNav.subNavlinks)
+                                        {
+                                            <li><a href="@subNav.NavItemUrl">@subNav.NavItemName</a></li>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="col col-md-3 col-sm-6 phone-sreen">
+                    <div class="footer-links">
+                        <h5>@Model.AddressTitle</h5>
+                        <p>
+                            @Model.Address
+                        </p>
+                        <a class="text-decoration-none primary-theme-color" href="tel:@Model.PrimaryContact">
+                            @Model.PrimaryContact
+                        </a>
+                        <a class="text-decoration-none primary-theme-color" href="mailto:@Model.PrimaryEmail">@Model.PrimaryEmail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    @if (Model.brancheList != null)
+    {
+        <div class="row mx-2 ">
+            @foreach (var branch in Model.brancheList)
+            {
+                <div class="col-lg-2 col-auto">
+                    <div class="card1 text-white text-start  mb-3 mr-0">
+                        <div class="card-header1"><img src="@branch.BranchImage" alt="@branch.ImageAltText"></div>
+                        <div class="card-body px-1">
+                            <h5 class="card-title">@branch.BranchName</h5>
+                            <p class="card-text">
+                                @Html.Raw(branch.BranchAddress)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+
+    <div class="footer-bottom">
+        <div class="d-flex justify-content-center">
+            <div class="col-sm-12 col-cantent ">
+                <div class="footer-bottom-text align-center ">
+                    @Html.Raw(Model.FooterCopyRightText)
+                </div>
+                @if (Model.bottomSocialMediaList != null && Model.bottomSocialMediaList.Count > 0)
+                {
+                    <div class="footer-bottom-links   ">
+                        <ul class="d-flex list-img-icon mt-3  ">
+                            @foreach (var socialMedia in Model.bottomSocialMediaList)
+                            {
+                                <li class="list-unstyled">
+                                    <a class="text-decoration-none" target="_blank" href="@socialMedia.SocialMediaURL">
+                                        <img width="@socialMedia.IconWidth" src="@socialMedia.SocialMediaIcon"
+                                     alt="@socialMedia.SocialAltText">
+                                    </a>
+                                </li>
+
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</footer>
+@await Component.InvokeAsync("Contactus")  

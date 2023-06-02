@@ -1,0 +1,46 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.BlogContainerModel
+
+@{ var controls = Model.Controls;}
+
+<div class="blog section text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading">
+                    <h2>@controls.Heading</h2>
+                </div>
+                <div class="blog-main">
+                    <span class="prev fas fa-chevron-left">prev</span>
+                    <div class="blog-slider">
+                        @{ var i = 0;}
+                        @foreach (var blog in Model.Blogs)
+                        {
+                            var cls = i == 0 ? "blog-detail a" : "blog-detail";
+                            <div class="@cls" style="background-image: url(@blog.BlogImage);">
+                                <h4 class="blog-heading">@blog.BlogShortTitle</h4>
+                                <div class="blog-detail-content content-wrap color-white">
+                                    <span>@blog.BlogShortTitle</span>
+                                    <p>@blog.BlogContentText</p>
+                                    <span>@blog.BlogAuthor<small>@blog.DisplayDate • @blog.BlogReadTimeText</small></span>
+                                    <div style="text-align: center">
+                                        <a href="@blog.NodeAliasPath"  class="btn primary-btn" title="@controls.SliderButtonText">
+                                            @controls.SliderButtonText
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            i++;
+                        }
+                    </div>
+                    <span class="next fas fa-chevron-right">next</span>
+                </div>
+
+            </div>
+            @*<div class="col-lg-12 mt-5" style="text-align: center">
+                <a href="/blog" class="btn primary-btn" title="@controls.ButtonText">
+                    @controls.ButtonText
+                </a>
+            </div>*@
+        </div>
+    </div>
+</div>

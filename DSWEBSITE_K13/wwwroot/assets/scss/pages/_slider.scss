@@ -1,0 +1,253 @@
+/* Slider */
+.slick-slider
+{
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+    @media only screen and (max-width: 991px) {
+        margin: 0 auto 30px;
+        text-align: center;
+    }
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+.slick-arrow {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    position: absolute;
+    svg{
+        height: 30px;
+        width: 30px;
+    }
+}
+.blog{
+    @media only screen and (max-width: 767px) {
+        display: none;
+     }
+}
+.blog-slider{
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @media only screen and (max-width: 767px) {
+        width: 100%;
+    }
+}
+.blog-slider .blog-detail {
+    width: 10%;
+    min-height: 600px;
+    border-radius: 25px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    @media only screen and (max-width: 767px) {
+        display: none;
+    }
+}
+.blog-slider .blog-detail::after{
+    position: absolute;
+    content: "";
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 25px;
+}
+.slide{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 150px;
+}
+.slide li{
+    padding: 10px;
+    border: 2px solid #1c1c1c;
+    border-radius: 50%;
+    margin-right: 0.8em;
+}
+.fived{
+    margin-right: 0;
+}
+
+.blog-slider .blog-detail.a{
+    width: 50%;
+    @media only screen and (max-width: 767px) {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+.b{
+    background-color: #1c1c1c;
+}
+.c{
+    pointer-events: none;
+}
+.blog-detail .blog-detail-content {
+    display: none;
+    transition: 0.3s all ease-in-out;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    text-align: left;
+    font-size: 16px;
+    padding: 0 20px 20px;
+}
+.blog-detail.a .blog-detail-content {
+    display: block;
+    transition: 0.3s all ease-in-out;
+}
+.blog-detail span small{
+    color: #FF5C00;
+    display: block;
+}
+.blog-detail span{
+    display: block;
+}
+.blog-detail.a .blog-heading{
+    display: none;
+}
+.blog-detail .blog-heading{
+    display: block;
+    transform: rotate(270deg);
+    font-weight: 500;
+    height: auto;
+    position: absolute;
+    bottom: 60px;
+    min-width: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0 auto;
+    color: #fff;
+    z-index: 1;
+    -webkit-transform: rotate(270deg);
+    white-space: nowrap;
+}
+.blog-main{
+    .next,.prev{
+        display: none;
+    }
+    @media only screen and (max-width: 767px) {
+        .next,.prev{
+            display: block;
+        }
+    }
+}
+

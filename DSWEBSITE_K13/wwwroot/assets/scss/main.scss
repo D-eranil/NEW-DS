@@ -1,0 +1,23 @@
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+/* Global Variables */
+@import "abstracts/variables";
+@import "base/base";
+
+/* Parts */
+@import "parts/header";
+@import "parts/footer";
+@import "parts/inner-banner";
+
+/* Pages */
+@import "pages/home";
+@import "pages/slider";
+@import "pages/services";
+@import "pages/expert";
+@import "pages/contact-us-popup";
+@import "pages/about-us";
+@import "pages/job-openings";
+@import "pages/technology";
+@import "pages/blog";
+

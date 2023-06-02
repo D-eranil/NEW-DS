@@ -1,0 +1,16 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.LinkIconsModel
+
+<div class="header-right-section @Model.divType">
+    <div class="header-contact-icon">
+        <ul>
+            @foreach (var linkIcon in Model.linkIcons)
+            {
+                <li>
+                    <a href="@linkIcon.IconUrl">
+                        <img src="@linkIcon.Icon" alt="@linkIcon.IconAltText">
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

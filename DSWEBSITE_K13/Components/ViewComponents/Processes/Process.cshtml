@@ -1,0 +1,36 @@
+﻿@model DSWEBSITE_K13.Models.ViewModels.ProcessViewModel
+<div class="work-process text-center section pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="heading text-center content-wrap">
+                    <h2>@Model.Title</h2>
+                    <p>@Model.ContentText</p>
+                </div>
+                <div class="work-process-list">
+                    <img src="@Model.ImageURL" alt="@Model.ImageAltText">
+                    <ul>
+                        @{ var processes = Model.Processes;}
+                        @{
+                            if (processes != null && processes.Count > 0)
+                            {
+                                foreach (var process in processes)
+                                {
+                                    <li title="@process.Description">@process.Title</li>
+                                }
+
+                            }
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //window.onload = function () {
+    //    //console.log('inner page');
+    //     document.getElementById('ActiveHeader').className = 'header sticky-header inner-header';
+    //};
+</script>

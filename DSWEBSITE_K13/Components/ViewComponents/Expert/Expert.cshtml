@@ -1,0 +1,16 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.ExpertModel
+
+@{ var expertDvCls = Model.IsStartexperties ? "float-lg-start" : "float-lg-end";
+    var expertimgCls = Model.IsStartexperties ? "float-lg-end" : "float-lg-start";}
+<div class="expert-section" id="@Model.sectionDivId">
+    <div class="container">
+        <div class="expert-content content-wrap @expertDvCls">
+            <h3 class="color-black">@Model.Name</h3>
+            <p>@Model.ShortDescription</p>
+            @Html.Raw(Model.Points)
+        </div>
+        <div class="expert-img @expertimgCls">
+            <img src="@Model.Image" alt="@Model.ImageAltText">
+        </div>
+    </div>
+</div>

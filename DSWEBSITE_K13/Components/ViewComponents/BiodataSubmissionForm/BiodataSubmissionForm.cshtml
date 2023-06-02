@@ -1,0 +1,289 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.BiodataSubmissionFormModel
+
+<form id="frmBiodataSubmission" method="post">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-6">
+                <label>Full Name<span>*</span></label>
+                <input id="FullName" name="FullName" type="text" value="" placeholder="" maxlength="50">
+                @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "error", @id = "errFullName" })
+            </div>
+            <div class="col-lg-6">
+                <label>Email<span>*</span></label>
+                <input id="Email" name="Email" type="email" value="" placeholder="" maxlength="50">
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "error", @id = "errEmail" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-group">
+            <label>Mobile Number<span>*</span></label>
+            <div class="mobile-dropdown position-relative">
+                @*<img src="/assets/images/arrow-down.svg" class="position-absolute">*@
+                <select id="CountryCode" name="CountryCode" class="form-select" aria-label="Default select example">
+                    <option value="+91" selected>India (+91)</option>
+                </select>
+            </div>
+            <input id="MobileNumber" name="MobileNumber" type="text" value="" placeholder="Enter Your Mobile Number..." class="popup-number numeric" maxlength="10">
+            @Html.ValidationMessageFor(m => m.MobileNumber, "", new { @class = "error", @id = "errMobileNumber" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            @if (Model.CurrentOpenings != null && Model.CurrentOpenings.Count > 0)
+            {
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        @*<img src="/assets/images/arrow-down-apply.svg" alt="career-arrow-down" class="position-absolute career-apply-arrow">*@
+                        <label>Apply For<span>*</span></label>
+                        <select id="ApplyFor" name="ApplyFor" class="form-select" aria-label="Default select example">
+                            @foreach (var item in Model.CurrentOpenings)
+                            {
+                                <option>@Html.Raw(item.OpeningTitle)</option>
+                            }
+                        </select>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.ApplyFor, "", new { @class = "error", @id = "errApplyFor" })
+                </div>
+            }
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    @*<img src="/assets/images/arrow-down-apply.svg" alt="career-arrow-down" class="position-absolute career-apply-arrow">*@
+                    <label>Year of Experience<span>*</span></label>
+                    @*<input id="YearOfExperience" name="YearOfExperience" type="text" value="" placeholder="" maxlength="5" class="numeric">*@
+                    <select id="YearOfExperience" name="YearOfExperience" class="form-select" aria-label="Default select example">
+                        @foreach (var item in Model.YearOfExperienceList)
+                        {
+                            <option value="@item.Value">@Html.Raw(item.Key)</option>
+                        }
+                    </select>
+                </div>
+                @Html.ValidationMessageFor(m => m.YearOfExperience, "", new { @class = "error", @id = "errYearOfExperience" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group file-attachment-submit-section text-center">
+        <div class="info-tooltip-icon">
+            <img src="/assets/images/info-icon.svg" alt="info-icon" data-toggle="tooltip" id="info-icon">
+        </div>
+        <div class="file-attachment position-relative">
+            <input id="Biodata" name="Biodata" type="file" />@*onchange="return fileValidation()"*@
+            <img src="/assets/images/file-attachment.svg" alt="file-attachment" class="position-absolute">
+
+        </div>
+        <div class="file-attachment-filename position-relative">
+            <span id="attached-file" name="attached-file" type="text"></span>
+            <button id="btnRemoveAttachment" name="btnRemoveAttachment" class="btn secondary-btn btn-close" title="Remove Attachment"></button>
+        </div>
+        <div class="submit-btn">
+            <button id="btnSubmit" name="btnSubmit" class="btn primary-btn">submit</button>
+        </div>
+    </div>
+    <div class="text-center">
+        @Html.ValidationMessageFor(m => m.Biodata, "", new { @class = "error err-upload-msg", @id = "errBiodata" })
+    </div>
+    <div class="form-group text-center">
+        <span id="formSuccess" class="text-success"></span>
+    </div>
+</form>
+<script type="text/javascript" on-content-loaded="true">
+
+        $('.numeric').on('input', function (event) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        $(".file-attachment-filename").hide();
+
+        $("#Biodata").change(function () {
+            var file = $(this).val();
+            if (file != undefined && file != null && file != "") {
+                $(".file-attachment").hide();
+                $(".file-attachment-filename").show();
+                $("#attached-file").html(file.split('\\').pop());
+            } else {
+                $(".file-attachment").show();
+                $(".file-attachment-filename").hide();
+                $("#attached-file").html("");
+            }
+        });
+
+        $("#btnSubmit").click(function () {
+
+            if (ValidateForm()) {
+                var form = $("#frmBiodataSubmission");
+                var formdata = false;
+                if (window.FormData) {
+                    formdata = new FormData(form[0]);
+                }
+
+                var valdata = $("#frmBiodataSubmission").serialize();
+                $.ajax({
+                    url: "/Form/CandidateBiodata",
+                    type: "POST",
+                    data: formdata ? formdata : valdata,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        $("#formSuccess").html(res);
+                        ResetForm();
+                    },
+                    error: function (msg) {
+                        alert("Error - " + msg);
+                    }
+                });
+                return false;
+            }
+            else {
+                return false;
+            }
+        });
+
+        $("#btnRemoveAttachment").click(function () {
+
+            $(".file-attachment").show();
+            $(".file-attachment-filename").hide();
+            $("#attached-file").html("");
+            return false;
+        });
+
+        function ResetForm() {
+            $("#FullName").val("");
+            $("#Email").val("");
+            $("#MobileNumber").val("");
+            $("#ApplyFor").val("");
+            $("#YearOfExperience").val("");
+            $("#Biodata").val("");
+            $("#btnRemoveAttachment").click();
+        }
+
+        function ValidateForm() {
+          
+            var isValid = true;
+
+            var fullName = $("#FullName").val();
+            var email = $("#Email").val();
+            var mobileNumber = $("#MobileNumber").val();
+            var applyFor = $("#ApplyFor").val();
+            var yearOfExperience = $("#YearOfExperience").val();
+            var biodata = $("#Biodata").val();
+            var pattern = /^\b[A-Z0-9._%-]+@@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+
+            if (fullName == null || fullName == "") {
+                $("#errFullName").html("Name is required");
+                isValid = false;
+            } else {
+                $("#errFullName").html("");
+            }
+
+            if (email == null || email == "") {
+                $("#errEmail").html("Email is required");
+                isValid = false;
+            } else if (!pattern.test(email)) {
+                $("#errEmail").html("Invalid email address");
+                isValid = false;
+            } else {
+                $("#errEmail").html("");
+            }
+
+            if (mobileNumber == null || mobileNumber == "") {
+                $("#errMobileNumber").html("Mobile number is required");
+                isValid = false;
+            } else {
+                $("#errMobileNumber").html("");
+            }
+
+            if (applyFor == null || applyFor == "") {
+                $("#errApplyFor").html("Apply for is required");
+                isValid = false;
+            } else {
+                $("#errApplyFor").html("");
+            }
+
+            if (yearOfExperience == null || yearOfExperience == "") {
+                $("#errYearOfExperience").html("Experience is required");
+                isValid = false;
+            } else {
+                $("#errYearOfExperience").html("");
+            }
+            //file upload
+            if (biodata == null || biodata == "") {
+                $("#errBiodata").html("Document is required");
+                isValid = false;
+            }
+            else {
+                $("#errBiodata").html("");
+                //validation code here.
+                var fileInput = $('#Biodata')[0].files[0].size;
+                //$('#Biodata')[0].files[0].size
+                console.log("Size",fileInput);
+               
+                var filePath =  $('#Biodata').val();
+
+                // Allowing file type
+                var allowedExtensions = /(\.doc|\.docx|\.pdf)$/i;
+
+                // Allowing file size
+                var maxSize =  (1024 * 4);
+                var fileSize = Math.round((fileInput / 1024));
+
+                if(fileSize > maxSize)
+                {
+                     $("#errBiodata").html("File must be less than or upto 4MB");
+                     isValid = false;
+                }
+                else
+                {
+                    if (!allowedExtensions.exec(filePath)) {
+                        $("#errBiodata").html("Invalid file type");
+                        fileInput.value = '';
+                        isValid = false;
+                    }
+                    else
+                    {
+                         $("#errBiodata").html("");
+                    }
+                }
+               
+            }
+
+            return isValid;
+        }
+        //Name
+        $("#FullName").on("keydown keyup change", function () {
+            var value = $(this).val();
+            if (value.length >= 1)
+                $("#errFullName").html("");
+            else
+                $("#errFullName").html("Name is required");
+        });
+        //Email
+        $("#Email").on("keydown keyup change", function () {
+            var value = $(this).val();
+            if (value.length >= 1)
+                $("#errEmail").html("");
+            else
+                $("#errEmail").html("Email is required");
+        });
+        //Mobile
+        $("#MobileNumber").on("keydown keyup change", function () {
+            var value = $(this).val();
+            if (value.length >= 1)
+                $("#errMobileNumber").html("");
+            else
+                $("#errMobileNumber").html("Mobile number is required");
+        });
+
+        $(document).ready(function(){
+            $('#info-icon').tooltip({
+              'show': true,
+                  'placement': 'bottom',
+                  'title': "Only .pdf, .doc and .docx format allowed. File must be less than or upto 4MB"
+            });
+    });
+</script>
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById('ActiveHeader').className = 'header sticky-header inner-header';
+    };
+</script>
+

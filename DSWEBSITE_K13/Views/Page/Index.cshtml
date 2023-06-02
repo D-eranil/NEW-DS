@@ -1,0 +1,6 @@
+﻿@model DSWEBSITE_K13.Models.ViewModels.PageBaseViewModel
+@{ Pages Page = Model.Node as Pages; }
+@{ ViewBag.Title = Page.DocumentName;}
+
+@*<vc:page-head page="Page" />*@
+<vc:vc-containers page="Page" direct="false" />

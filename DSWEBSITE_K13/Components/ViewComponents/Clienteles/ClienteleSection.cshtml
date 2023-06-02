@@ -1,0 +1,21 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.ServiceSectionModel
+
+<div class="services-section" id="@Model.SectionDivId">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="services-content">
+                    <h3 class="color-black">
+                        @Model.Name
+                    </h3>
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="services-img">
+                    <img src="@Model.Image" alt="services-@Model.Image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

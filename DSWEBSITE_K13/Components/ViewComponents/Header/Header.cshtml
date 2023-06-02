@@ -1,0 +1,77 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.HeaderViewModel
+@{
+    var IconsModel = new LinkIconsModel();
+    IconsModel.linkIcons = Model.LinkIcons;
+    var desktopLogo = SettingsKeyInfoProvider.GetValue("DesktopLogo");
+    var mobileLogo = SettingsKeyInfoProvider.GetValue("MobileLogo");
+}
+
+<header class="header sticky-header" id="ActiveHeader">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="header-logo text-center">
+                    <a href="@Model.LogoUrl"><img src="@desktopLogo" alt="@Model.LogoAltText"></a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="/"><img src="@mobileLogo" alt="logo-mobile"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg width="38" height="36" viewBox="0 0 38 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 17.9997C0 15.2397 2.27999 12.9597 5.03998 12.9597C7.79998 12.9597 10.08 15.2397 10.08 17.9997C10.08 20.8197 7.85997 22.9797 5.03998 22.9797C2.27999 23.0397 0 20.7597 0 17.9997Z" fill="black" />
+                            <path d="M23.6403 17.9996C23.6403 20.7596 21.3603 23.0396 18.6003 22.9796C15.8403 22.9796 13.5603 20.6996 13.6203 17.9396C13.6203 15.1796 15.9003 12.8997 18.6603 12.9597C21.4203 12.9597 23.6403 15.2396 23.6403 17.9996Z" fill="black" />
+                            <path d="M37.2597 17.9997C37.2597 20.7597 34.9797 23.0397 32.2197 23.0397C29.4597 23.0397 27.1797 20.7597 27.1797 17.9997C27.1797 15.2397 29.4597 12.9597 32.2197 12.9597C35.0397 12.9597 37.2597 15.2397 37.2597 17.9997Z" fill="black" />
+                            <path d="M32.2794 25.9199C35.0394 25.9199 37.3194 28.1999 37.2594 30.9599C37.2594 33.7199 34.9794 35.9999 32.2194 35.9999C29.4594 35.9999 27.1794 33.6599 27.2394 30.8999C27.2394 28.1999 29.5194 25.9199 32.2794 25.9199Z" fill="black" />
+                            <path d="M32.2194 10.0797C29.4594 10.0197 27.1794 7.73976 27.2394 4.97977C27.2994 2.21978 29.5794 -0.000217855 32.3394 0.059782C35.0994 0.119782 37.3194 2.39977 37.2594 5.15977C37.2594 7.85976 34.9194 10.0797 32.2194 10.0797Z" fill="black" />
+                            <path d="M18.6005 10.08C15.8405 10.08 13.5605 7.79998 13.5605 5.03998C13.5605 2.27999 15.8405 0 18.6005 0C21.3605 0 23.6405 2.27999 23.6405 5.09998C23.6405 7.79998 21.3605 10.08 18.6005 10.08Z" fill="black" />
+                            <path d="M18.6591 25.9199C21.4191 25.9199 23.6991 28.1999 23.6991 30.9599C23.6991 33.7199 21.4191 35.9999 18.6591 35.9999C15.8991 35.9999 13.6191 33.7199 13.6191 30.9599C13.6191 28.1999 15.8991 25.9199 18.6591 25.9199Z" fill="black" />
+                        </svg>
+                    </button>
+                    @if (Model.MainNavMenus != null && Model.MainNavMenus.Count > 0)
+                    {
+                        var i = 0;
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav">
+
+                                @foreach (var menu in Model.MainNavMenus)
+                                {
+                                    var cls = i == 0 ? "nav-item" : "nav-item";
+                                    <li class="@cls">
+                                        @if (menu.NavItemName != "Contact us")
+                                        {
+                                            <a class="nav-link" href="@menu.NavItemUrl">@menu.NavItemName</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#contact-us-popup">@menu.NavItemName</a>
+                                        }
+                                    </li>
+                                    i++;
+                                }
+
+                                <li>
+                                    @if (Model.LinkIcons != null && Model.LinkIcons.Count > 0)
+                                    {
+                                        IconsModel.divType = "responsive-version";
+                                        @await Component.InvokeAsync("LinkIcons", IconsModel);
+                                    }
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    }
+                </nav>
+            </div>
+            <div class="col-lg-2">
+                @if (Model.LinkIcons != null && Model.LinkIcons.Count > 0)
+                {
+                    IconsModel.divType = "desktop-version";
+                    @await Component.InvokeAsync("LinkIcons", IconsModel);
+                }
+            </div>
+        </div>
+    </div>
+</header>
+

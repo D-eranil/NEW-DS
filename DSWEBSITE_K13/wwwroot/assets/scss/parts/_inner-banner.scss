@@ -1,0 +1,99 @@
+.inner-banner{
+    padding: 180px 0 230px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    @media only screen and (max-width: 991px) {
+    padding: 60px 0 60px;
+    background-attachment: inherit;
+    height: auto;
+    }
+    .inner-banner-content{
+        .inner-banner-heading{
+            font-size: 50px;
+            font-weight: 700;
+            margin: 0px auto 15px;
+            @media (max-width: 1200px) and (min-width: 992px) {
+                font-size: 40px;
+            }
+            @media only screen and (max-width: 991px) {
+                font-size: 30px;
+            }
+        }
+        span{
+            display: block;
+        }
+    }
+    
+}
+.breadcrumbs{
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @media only screen and (max-width: 991px) {
+        display: none;
+    }
+    ul{
+        padding: 0;
+        display: flex;
+        li{
+            list-style: none;
+            display: inline-flex;
+            margin: 0 10px;
+            font-size: 14px;
+            margin: 0 6px;
+            @media (max-width: 1210px) and (min-width: 992px) {
+                    font-size: 12px;
+                    margin: 0 3px;
+            }
+            a{
+                color: #fff;
+                text-decoration: none;
+                transition: 0.3s all ease-in-out;
+                &:hover{
+                    color: $color-orange;
+                }
+            }
+        }
+    }
+    .contact-call-action-btn {
+        position: absolute;
+        top: 5px;
+        right: 11.8%;
+        background-color: #fff;
+        color: #000;
+        padding: 3px 10px;
+        border-radius: 20px;
+        cursor: pointer;
+        display: none;
+        transition: 0.3s all ease-in-out;
+    }
+    &.fixed-breadcrumb {
+        position: fixed !important;
+        top: 0px;
+        background-color: #F05A22;
+        height: 45px;
+        padding: 10px 0; 
+        z-index: 2;
+        ul{
+            li{
+                a{
+                    color: $color-white;
+                }
+            }
+        }
+        .contact-call-action-btn {
+            display: block;
+        }
+    }
+}
+.terms-condition-section{
+    span{
+        color: $color-orange;
+    }
+    h5{
+        margin-top: 30px;
+    }
+} 

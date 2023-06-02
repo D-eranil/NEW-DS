@@ -1,0 +1,13 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.CareerValuesSectionModel
+
+<div class="section values-section" id="@Model.SectionDivId" style="background-image: url(@Model.Image);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-8">
+                <div class="our-values color-white">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

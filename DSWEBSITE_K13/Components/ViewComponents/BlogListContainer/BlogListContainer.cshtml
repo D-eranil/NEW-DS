@@ -1,0 +1,71 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.BlogListContainerModel
+
+@{
+    var blog = Model.LatestBlog;
+    var blogs = Model.Blogs;
+    var controls = Model.Controls;
+}
+<main>
+    <div class="blog-new-banner position-relative color-white" style="background-image: url(@blog.BlogBannerImage);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="blog-banner-new-layout">
+                        @*<span>@blog.BlogAuthor @(string.IsNullOrEmpty(@blog.Topic)?"": "/"+ @blog.Topic)</span>*@
+                        <span>@blog.BlogAuthor</span>
+                        <h2><a href="@blog.NodeAliasPath">@blog.BlogTitle</a></h2>
+                        <div class="blog-post-date position-absolute">
+                            <p title="@blog.BlogCreatedDate">@blog.DisplayDate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reloader text-left">
+                    <a href="@blog.NodeAliasPath" class="btn primary-btn" title="@controls.SliderButtonText">@controls.SliderButtonText</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="row">
+                    @if (blogs != null && blogs.Count > 0)
+                    {
+                        @foreach (var _blog in blogs)
+                        {
+                            <div class="col-lg-4 col-md-4">
+                                <div class="blog-mini-detail">
+                                    <div class="blog-mini-img">
+                                        <a href="@_blog.NodeAliasPath"><img src="@_blog.ThumbnailImage" alt="@_blog.ThumbnailImageAltText"></a>
+                                    </div>
+                                    <div class="blog-mini-content">
+                                        <span>@_blog.BlogAuthor</span>
+                                        <div class="blog-mini-heading"><a href="@_blog.NodeAliasPath">@_blog.BlogTitle</a></div>
+                                        <p title="@_blog.BlogCreatedDate">@_blog.DisplayDate</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="reloader text-center">
+                @if (!string.IsNullOrEmpty(Model.Message))
+                {
+                    <span class="h4">@Model.Message</span>
+                    <br />
+                    <br />
+                }
+                @if (Model.IsCategorySearch || Model.IsTagSearch)
+                {
+                    <a href="/blog" class="btn primary-btn" title="@controls.ListingButtonText">@controls.ListingButtonText</a>
+                }
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('ActiveHeader').className = 'header sticky-header inner-header';
+    };
+</script>

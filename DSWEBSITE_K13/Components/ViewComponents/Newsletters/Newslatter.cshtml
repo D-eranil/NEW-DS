@@ -1,0 +1,31 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.NewslatterModel
+
+<div class="subscribe-section color-white" style="background-image: url(@Model.BackgroundImage);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="subscribe-content color-white">
+                    <h3>
+                        @Model.
+                        <span class="primary-circle-color">.</span>
+                    </h3>
+                    <p>@Model.ContentText</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <form method="post">
+                    <input type="email" value="" placeholder="@Model.EmailTextboxName">
+                    @*@Html.TextBoxFor(m=>m.EmailTextboxName)*@
+                    <div class="checkbox-subscribe">
+                        <label class="control control-checkbox">
+                            @Model.CheckboxText
+                            <input type="checkbox" id="@Model.AgreedCheckbox" />
+                            <div class="control_indicator"></div>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn primary-btn">@Model.ButtonText</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

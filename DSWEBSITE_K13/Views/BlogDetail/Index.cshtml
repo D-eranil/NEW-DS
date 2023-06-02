@@ -1,0 +1,6 @@
+﻿@model DSWEBSITE_K13.Models.ViewModels.PageBaseViewModel
+@{ Blogs Page = Model.Node as Blogs; }
+@{ ViewBag.Title = Page.DocumentName;}
+
+<blog-details page="Page"></blog-details>
+@await Component.InvokeAsync("BlogDetails", new { page = Page })

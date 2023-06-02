@@ -1,0 +1,45 @@
+﻿@model DSWEBSITE_K13.Models.ViewModels.ErrorViewModel
+@{
+    Layout = null;
+    var cls = Model.PageName=="500"? "error-middle-section error2-new": "error-middle-section";
+    //"error-middle-section error2-new";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    @Html.Kentico().PageDescription()
+    @Html.Kentico().PageKeywords()
+    @Html.Kentico().PageTitle(ViewBag.Title as string)
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="preload" as="font" crossorigin>
+    <link href="~/assets/css/Error.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="error-main">
+        <div class="container">
+            <div class="@cls">
+                <div class="error-info">
+                    <div class="error-img">
+                        <img src="@Model.Image" alt="@Model.ImageAltText">
+                    </div>
+                    <div class="error-content">
+                        <h4>@Model.Title</h4>
+                        <p>
+                            @Html.Raw(Model.Description)
+                        </p>
+                        @if (!string.IsNullOrEmpty(Model.LinkText) && !string.IsNullOrEmpty(Model.LinkUrl))
+                        {
+                            <a href="@Model.LinkUrl">@Model.LinkText</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

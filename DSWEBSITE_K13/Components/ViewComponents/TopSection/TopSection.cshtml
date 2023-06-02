@@ -1,0 +1,40 @@
+﻿@model DSWEBSITE_K13.Components.ViewComponents.TopSectionModel
+
+
+<div class="home-banner" style="background-image: url(@Model.ImageURL);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="banner-content text-center color-white">
+                    <h1>@Model.MainTitle</h1>
+                    <p>@Model.HeadingContentText</p>
+                    <a href="@Model.ButtonRedirectURL" class="btn primary-btn" title="=@Model.ButtonHoverText">
+                        @Model.ButtonText
+                    </a>
+                </div>
+                <div class="client-partner-section color-white">
+                    <div class="happy-clients">
+                        <h2>
+                            @Model.ClientCaptionCount <span class="font-medium">
+                                @Model.ClientCaptionText
+                            </span>
+                        </h2>
+                    </div>
+                    @if (Model.BrandList != null && Model.BrandList.Count > 0)
+                    {
+                        <div class="partner-logos ">
+                            <div class="partner-slider">
+                                @foreach (var brand in Model.BrandList)
+                                {
+                                    <div class="partner-logo">
+                                        <img class="partner-img" src="@brand.Icon" alt="@brand.IconAltText">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+17/10
+D:\Projects\DSKentico\DSWEBSITE_K13\wwwroot\assets\js
+custom.js added
+
+D:\Projects\DSKentico\DSWEBSITE_K13\Components\ViewComponents\Header
+Header cshtml updated
+
+D:\Projects\DSKentico\DSWEBSITE_K13\Views\Shared
+Layout added custom js
+
+D:\Projects\DSKentico\DSWEBSITE_K13\wwwroot\assets\css
+main.css -> active-header class added
+
+D:\Projects\DSKentico\DSWEBSITE_K13\Components\ViewComponents\BlogDetails
